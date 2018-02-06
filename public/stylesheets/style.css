@@ -1,0 +1,548 @@
+/* Полоса прокрутки */
+
+::-webkit-scrollbar {
+    margin-left: 5px;
+}
+
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #D9CB9E;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #DC3522;
+}
+
+::-webkit-resizer {
+    width: 0;
+    height: 0;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+/* Цвета
+#DC3522
+#D9CB9E
+#374140
+#2A2C2B
+#1E1E20
+ */
+
+/* Основное */
+
+body {
+    /*font-family: 'Roboto', sans-serif;*/
+    background: #2A2C2B;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    min-width: 1000px;
+    width: 100%;
+    background: #1E1E20;
+    height: 40px;
+}
+
+header #logo {
+    width: 200px;
+    color: #D9CB9E;
+    font-weight: bold;
+    margin: 5px 0;
+    font-size: 25px;
+    text-align: center;
+    display: inline-block;
+}
+
+#wrapper {
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+div {
+    color: #D9CB9E;
+}
+
+.block-title {
+    text-align: center;
+    color: #374140;
+    font-size: 20px;
+}
+
+/* Логин и регистрация */
+
+#auth-block {
+    width: 605px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+#auth-block .error {
+    color: #DC3522;
+    font-size: 14px;
+}
+
+.form-input {
+    width: 250px;
+    height: 25px;
+    font-size: 16px;
+    border-radius: 3px;
+    color: #D9CB9E;
+    background: #374140;
+    margin: 5px 0;
+    border: 1px solid black;
+}
+
+#reg-key-block {
+    width: 252px;
+    height: 29px;
+    margin: 5px 0;
+}
+
+#reg-key-block .key-form-input {
+    width: 225px;
+    height: 25px;
+    font-size: 16px;
+    border-radius: 3px;
+    color: #D9CB9E;
+    background: #374140;
+    border: 1px solid black;
+    float: left;
+}
+
+#reg-key-block #key-hint {
+    width: 16px;
+    height: 16px;
+    background: url('../images/key-hint.png');
+    background-size: 16px 16px;
+    margin: 7px 4px 6px 3px;
+    float: left;
+}
+
+.form-button:active {
+    background: #2A2C2B repeat-x;
+}
+
+.form-button {
+    width: 150px;
+    margin: 5px 50px;
+    background: #374140 repeat-x;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #D9CB9E;
+}
+
+#registration {
+    width: 300px;
+    margin: 10px 5px 0 0;
+    border-radius: 5px;
+    background: #1E1E20;
+    display: inline-block;
+    float: left;
+}
+
+#login {
+    width: 300px;
+    margin: 10px 0 0 0;
+    border-radius: 5px;
+    background: #1E1E20;
+    display: inline-block;
+    float: left;
+}
+
+#registration-form {
+    width: 254px;
+    margin: 15px 23px 5px 23px;
+}
+
+#login-form {
+    width: 254px;
+    margin: 15px 23px 5px 23px;
+}
+
+/* Три колонки */
+
+#channels {
+    width: 330px;
+    margin: 10px 5px 0 0;
+    border-radius: 5px;
+    background: #1E1E20;
+    display: inline-block;
+    float: left;
+}
+
+#music-queue {
+    width: 400px;
+    margin: 10px 5px 0 5px;
+    border-radius: 5px;
+    background: #1E1E20;
+    display: inline-block;
+    float: left;
+}
+
+#profile {
+    width: 250px;
+    margin: 10px 0 0 5px;
+    border-radius: 5px;
+    background: #1E1E20;
+    display: inline-block;
+    float: left;
+}
+
+/* Список голосовых каналов */
+
+#channels #voice-channels {
+    width: 330px;
+    margin: 0 0 10px 0;
+}
+
+#channels #voice-channels .voice-channel {
+    width: 330px;
+}
+
+#channels #voice-channels .voice-channel .voice-channel-info {
+    cursor: pointer;
+    width: 330px;
+    height: 30px;
+}
+
+#channels #voice-channels .voice-channel .voice-channel-info .voice-channel-selected {
+    width: 30px;
+    height: 30px;
+    /*background: url('../images/selected-sign.png');
+    background-size: 30px 30px;*/
+    display: inline-block;
+    float: left;
+}
+
+#channels #voice-channels .voice-channel .voice-channel-info .voice-channel-not-selected {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    float: left;
+}
+
+#channels #voice-channels .voice-channel .voice-channel-info .voice-channel-name {
+    width: 300px;
+    height: 24px;
+    padding-top: 6px;
+    display: inline-block;
+    float: left;
+    font-size: 20px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Список участников канала */
+
+#channels #voice-channels .voice-channel .members {
+    width: 330px;
+}
+
+#channels #voice-channels .voice-channel .members .member-name {
+    width: 270px;
+    height: 20px;
+    margin-left: 60px;
+    margin-top: 5px;
+    font-size: 16px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Текущий трек */
+
+#current-track {
+    width: 400px;
+    height: 40px;
+    margin: 10px 0;
+}
+
+#current-track #play-pause-button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    float: left;
+}
+
+#current-track .play-button {
+    background: url('../images/play-button.png');
+    background-size: 40px 40px;
+}
+
+#current-track .pause-button {
+    background: url('../images/pause-button.png');
+    background-size: 40px 40px;
+}
+
+#current-track #next-button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: url('../images/next-button.png');
+    background-size: 40px 40px;
+    display: inline-block;
+    float: left;
+}
+
+#current-track #current-track-content {
+    width: 295px;
+    margin-left: 5px;
+    height: 40px;
+    display: inline-block;
+    float: left;
+
+}
+
+#current-track #current-track-content #current-track-info {
+    width: 315px;
+    height: 20px;
+}
+
+#current-track #current-track-content #current-track-info #current-track-name {
+    width: 265px;
+    height: 20px;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#current-track #current-track-content #current-track-info #current-track-time {
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#current-track #current-track-content #current-track-progress {
+    width: 310px;
+    height: 20px;
+    margin: 9px 5px 9px 0;
+}
+
+#current-track #current-track-content #current-track-progress #played {
+    height: 2px;
+    background: #DC3522;
+    display: inline-block;
+    float: left;
+}
+
+#current-track #current-track-content #current-track-progress #left {
+    height: 2px;
+    background: #D9CB9E;
+    display: inline-block;
+    float: left;
+}
+
+/* Очередь треков */
+
+#current-queue {
+    width: 400px;
+    margin: 10px 0;
+}
+
+#current-queue .queue-track-info {
+    width: 395px;
+    height: 20px;
+    margin-left: 5px;
+}
+
+#current-queue .queue-track-info .queue-track-source {
+    width: 16px;
+    height: 16px;
+    margin: 2px;
+    display: inline-block;
+    float: left;
+}
+
+#current-queue .queue-track-info .queue-track-source-youtube {
+    background: url('../images/youtube-source.png');
+    background-size: 16px 16px;
+}
+
+/*#current-queue .queue-track-info .queue-track-source .queue-track-source-local {*/
+/*background: url('../images/local-source.png');*/
+/*background-size: 20px 20px;*/
+/*}*/
+
+#current-queue .queue-track-info .queue-track-name {
+    width: 320px;
+    height: 20px;
+    margin-left: 5px;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#current-queue .queue-track-info .queue-track-time {
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Профиль */
+
+#profile-info {
+    width: 240px;
+    height: 32px;
+    margin: 5px 5px;
+}
+
+#profile-avatar {
+    width: 32px;
+    height: 32px;
+    background: url('../images/default-avatar.png');
+    background-size: 32px 32px;
+    border-radius: 50%;
+    display: inline-block;
+    float: left;
+}
+
+#logout-button:active {
+    background: #2A2C2B repeat-x;
+}
+
+#logout-button {
+    width: 120px;
+    margin: 5px 0 5px 120px;
+    background: #374140 repeat-x;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #D9CB9E;
+}
+
+.profile-name {
+    width: 205px;
+    margin: 7px 0 7px 3px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+    float: left;
+}
+
+#disc-space {
+    width: 240px;
+    height: 20px;
+    margin: 5px 5px;
+}
+
+#disc-space #used {
+    height: 20px;
+    width: 20%;
+    background: #DC3522;
+    display: inline-block;
+    float: left;
+}
+
+#disc-space #free {
+    height: 20px;
+    width: 80%;
+    background: #D9CB9E;
+    display: inline-block;
+    float: left;
+}
+
+#disc-space-info {
+    height: 18px;
+    width: 240px;
+    margin: 5px 5px;
+}
+
+#disc-space-info-title {
+    width: 80px;
+    display: inline-block;
+    float: left;
+}
+
+#disc-space-info-size {
+    width: 160px;
+    margin-top: 1px;
+    height: 17px;
+    font-size: 14px;
+    display: inline-block;
+    float: left;
+}
+
+#library {
+    max-height: 350px;
+    overflow: auto;
+    margin: 5px 0;
+}
+
+#library .library-file-info {
+    width: 239px;
+    height: 20px;
+    margin-left: 5px;
+}
+
+#library .library-file-info .library-file-icon {
+    width: 15px;
+    height: 20px;
+    background: url('../images/file-icon.png');
+    background-size: 15px 20px;
+    display: inline-block;
+    float: left;
+}
+
+#library .library-file-info .library-file-name {
+    width: 217px;
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 2px;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#download-button:active {
+    background: #2A2C2B repeat-x;
+}
+
+
+#download-button {
+    width: 120px;
+    margin: 5px 0 5px 120px;
+    background: #374140 repeat-x;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #D9CB9E;
+}

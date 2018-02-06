@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/socket.io.js"></script>
+    <script src="javascripts/panel_manager.js"></script>
+</head>
+<body>
+<header>
+    <div id="logo"><%= title %></div>
+</header>
+<div id="wrapper">
+    <div id="channels">
+        <div class="block-title">Голосовые каналы</div>
+        <div id="voice-channels">
+        </div>
+    </div>
+    <div id="music-queue">
+        <div class="block-title">Текущий трек</div>
+        <div id="current-track">
+            <div id="play-pause-button" class="play-button"></div>
+            <div id="next-button"></div>
+            <div id="current-track-content">
+                <div id="current-track-info">
+                    <div id="current-track-name"></div>
+                    <div id="current-track-time"></div>
+                </div>
+                <div id="current-track-progress">
+                    <div id="played"></div>
+                    <div id="left"></div>
+                </div>
+            </div>
+        </div>
+        <div class="block-title">Очередь</div>
+        <div id="current-queue">
+        </div>
+    </div>
+
+    <div id="profile">
+        <div class="block-title">Профиль</div>
+        <div id="profile-info">
+            <div id="profile-avatar"></div>
+            <div class="profile-name"><%= user.username %></div>
+        </div>
+        <button type="button" onclick="logout()" id="logout-button" class="button">Выход</button>
+        <div class="block-title">Диск</div>
+        <div id="disc-space">
+            <div id="used"></div>
+            <div id="free"></div>
+        </div>
+        <div id="disc-space-info">
+            <div id="disc-space-info-title">Свободно:</div>
+            <div id="disc-space-info-size">528 MB (51%)</div>
+        </div>
+        <div hidden="true" id="library-wrapper">
+            <div class="block-title">Моя библиотека</div>
+            <div id="library">
+                <div class="library-file-info">
+                    <div class="library-file-icon"></div>
+                    <div class="library-file-name">Twenty One Pilots – Stressed Out</div>
+                </div>
+                <div class="library-file-info">
+                    <div class="library-file-icon"></div>
+                    <div class="library-file-name">Twenty One Pilots – Stressed Out</div>
+                </div>
+            </div>
+            <button type="button" id="download-button" class="button">Загрузить...</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function logout() {
+        $.ajax({
+            url: "/logout",
+            method: "POST",
+            statusCode: {
+                200: function () {
+                    window.location.href = "/";
+                }
+            }
+        });
+        return false;
+    }
+</script>
+</body>
+</html>

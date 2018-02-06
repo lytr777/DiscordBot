@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="javascripts/jquery.js"></script>
+</head>
+<body>
+<header>
+    <div id="logo"><%= title %></div>
+</header>
+<div id="wrapper">
+    <div id="auth-block">
+        <div id="registration">
+            <form id="registration-form">
+                <div class="error"></div>
+                <input name="username" type="text" class="form-input" placeholder="Имя">
+                <input name="password" type="password" class="form-input" placeholder="Пароль">
+                <input name="password_check" type="password" class="form-input" placeholder="Еще раз">
+                <div id="reg-key-block">
+                    <input name="key" type="text" class="key-form-input" placeholder="Ключ">
+                    <div id="key-hint" title="Можно получить от бота после использования команды key <salt>"></div>
+                </div>
+                <button type="submit" id="reg-button" class="form-button">Зарегистрироваться</button>
+            </form>
+        </div>
+        <div id="login">
+            <form id="login-form">
+                <div class="error"></div>
+                <input name="username" type="text" class="form-input" placeholder="Имя">
+                <input name="password" type="password" class="form-input" placeholder="Пароль">
+                <button type="submit" id="log-button" class="form-button">Войти</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document.forms['registration-form']).on('submit', function () {
+        var form = $(this);
+
+        $.ajax({
+            url: "/registration",
+            method: "POST",
+            data: form.serialize(),
+            statusCode: {
+                200: function () {
+                    window.location.href = "/panel";
+                },
+                403: function (jqXHR) {
+                    console.log(jqXHR);
+                    var error = JSON.parse(jqXHR.responseText);
+                    $('.error', form).html(error.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>
+<script>
+    $(document.forms['login-form']).on('submit', function () {
+        var form = $(this);
+
+        $.ajax({
+            url: "/login",
+            method: "POST",
+            data: form.serialize(),
+            statusCode: {
+                200: function () {
+                    window.location.href = "/panel";
+                },
+                403: function (jqXHR) {
+                    var error = JSON.parse(jqXHR.responseText);
+                   $('.error', form).html(error.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>
+</body>
+</html>
