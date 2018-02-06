@@ -1,0 +1,129 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+// const app = require('../app');
+const newClient = require('../new_client/index').DiscordClient;
+// const debug = require('debug')('discordbot:server');
+// const http = require('http');
+const config = require('../config');
+const mongoose = require('../lib/mongoose');
+// const User = require('../models/user').User;
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+// app.set('port', config.get('port'));
+/**
+ * Create HTTP server.
+ */
+
+// var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+// server.listen(config.get('port'));
+let ncl = new newClient();
+ncl.login(config.get('token'));
+
+//
+// var cl = new client(config.get('token'), config.get('test-sid'), config.get('myId'), config.get('googleKey'));
+//
+// gee.on('generateKey', function (args) {
+//     var salt = args.salt, user = args.user;
+//     User.generateKey(user.id, salt, function (err, dbUser) {
+//         if (err) {
+//             console.log('generateKey: ' + err);
+//             return;
+//         }
+//         gee.newEvent('sendKey', {
+//             key: dbUser.key,
+//             user: user
+//         });
+//     });
+// });
+
+class IOManager {
+
+    constructor(io) {
+        this.io = io;
+        this.socket = null;
+
+        io.on('connection', function (socket) {
+            this.socket = socket;
+            // socket.emit('initialState', cl.getInitialState());
+        }.bind(this));
+
+        this.createListeners();
+    }
+
+    createListeners() {
+        gee.on('channelUpdate', function (channelData) {
+            if (this.socket)
+                this.socket.emit('channelUpdate', channelData);
+        }.bind(this));
+        gee.on('queueAdd', function (track) {
+            if (this.socket)
+                this.socket.emit('queueAdd', track);
+        }.bind(this));
+        gee.on('queueNext', function () {
+            if (this.socket)
+                this.socket.emit('queueNext');
+        }.bind(this));
+        gee.on('currentProgressUpdate', function (progress) {
+            if (this.socket)
+                this.socket.emit('currentProgressUpdate', progress);
+        }.bind(this));
+    }
+}
+
+// var ioManager = new IOManager(require('socket.io').listen(server));
+
+
+// server.on('error', onError);
+// server.on('listening', onListening);
+//
+// /**
+//  * Event listener for HTTP server "error" event.
+//  */
+//
+// function onError(error) {
+//   if (error.syscall !== 'listen') {
+//     throw error;
+//   }
+//
+//   var bind = typeof port === 'string'
+//     ? 'Pipe ' + port
+//     : 'Port ' + port;
+//
+//   // handle specific listen errors with friendly messages
+//   switch (error.code) {
+//     case 'EACCES':
+//       console.error(bind + ' requires elevated privileges');
+//       process.exit(1);
+//       break;
+//     case 'EADDRINUSE':
+//       console.error(bind + ' is already in use');
+//       process.exit(1);
+//       break;
+//     default:
+//       throw error;
+//   }
+// }
+//
+// /**
+//  * Event listener for HTTP server "listening" event.
+//  */
+//
+// function onListening() {
+//   var addr = server.address();
+//   var bind = typeof addr === 'string'
+//     ? 'pipe ' + addr
+//     : 'port ' + addr.port;
+//   debug('Listening on ' + bind);
+// }
