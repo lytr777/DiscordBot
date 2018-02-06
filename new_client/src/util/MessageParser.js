@@ -12,7 +12,7 @@ const LinkChecker = require('./LinkChecker');
 class MessageParser {
 
     constructor() {
-        fs.readFile('new_client/help', 'utf8', function (error, text) {
+        fs.readFile('files/help', 'utf8', function (error, text) {
             if (error) {
                 console.log(error);
             } else {
