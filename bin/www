@@ -47,40 +47,40 @@ ncl.login(config.get('token'));
 //         });
 //     });
 // });
-
-class IOManager {
-
-    constructor(io) {
-        this.io = io;
-        this.socket = null;
-
-        io.on('connection', function (socket) {
-            this.socket = socket;
-            // socket.emit('initialState', cl.getInitialState());
-        }.bind(this));
-
-        this.createListeners();
-    }
-
-    createListeners() {
-        gee.on('channelUpdate', function (channelData) {
-            if (this.socket)
-                this.socket.emit('channelUpdate', channelData);
-        }.bind(this));
-        gee.on('queueAdd', function (track) {
-            if (this.socket)
-                this.socket.emit('queueAdd', track);
-        }.bind(this));
-        gee.on('queueNext', function () {
-            if (this.socket)
-                this.socket.emit('queueNext');
-        }.bind(this));
-        gee.on('currentProgressUpdate', function (progress) {
-            if (this.socket)
-                this.socket.emit('currentProgressUpdate', progress);
-        }.bind(this));
-    }
-}
+//
+// class IOManager {
+//
+//     constructor(io) {
+//         this.io = io;
+//         this.socket = null;
+//
+//         io.on('connection', function (socket) {
+//             this.socket = socket;
+//             // socket.emit('initialState', cl.getInitialState());
+//         }.bind(this));
+//
+//         this.createListeners();
+//     }
+//
+//     createListeners() {
+//         gee.on('channelUpdate', function (channelData) {
+//             if (this.socket)
+//                 this.socket.emit('channelUpdate', channelData);
+//         }.bind(this));
+//         gee.on('queueAdd', function (track) {
+//             if (this.socket)
+//                 this.socket.emit('queueAdd', track);
+//         }.bind(this));
+//         gee.on('queueNext', function () {
+//             if (this.socket)
+//                 this.socket.emit('queueNext');
+//         }.bind(this));
+//         gee.on('currentProgressUpdate', function (progress) {
+//             if (this.socket)
+//                 this.socket.emit('currentProgressUpdate', progress);
+//         }.bind(this));
+//     }
+// }
 
 // var ioManager = new IOManager(require('socket.io').listen(server));
 
