@@ -27,6 +27,7 @@
     "socket.io": "~1.7.3",
     "youtube-playlist-info": "~0.1.0",
     "ytdl": "~0.10.0",
-    "ytdl-core": "~0.20.0"
+    "ytdl-core": "~0.20.0",
+    "ffmpeg-binaries": "^3.2.2-3"
   }
 }
