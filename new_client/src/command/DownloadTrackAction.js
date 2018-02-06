@@ -6,8 +6,8 @@ const ChatAction = require('./ChatAction');
 const AddTrackAction = require('./AddTrackAction');
 const Dictionary = require('../util/Dictionary').Rus;
 
-// const collectionDirectory = '/var/cache/Bot/collection/';
-const collectionDirectory = '/Users/lytr777/'
+const collectionDirectory = '/var/cache/Bot/collection/';
+// const collectionDirectory = '/Users/lytr777/'
 const timeLimit = 600;
 
 class DownloadTrackAction {
