@@ -19,6 +19,9 @@
     "string-to-stream": "^1.1.0",
     "youtube-playlist-info": "~0.1.0",
     "ytdl": "~0.10.0",
-    "ytdl-core": "^0.20.1"
+    "ytdl-core": "^0.20.1",
+    "readable-stream": "latest",
+    "inherits": "latest",
+    "process-nextick-args": "latest"
   }
 }

@@ -4,6 +4,7 @@ const Dictionary = require('./util/Dictionary').Rus;
 const Formatter = require('./util/Formatter');
 const Config = require('./util/Config');
 const StringToStream = require('string-to-stream');
+const TrackStream = require('./TrackStream');
 const fs = require("fs");
 
 class Player {
@@ -52,7 +53,7 @@ class Player {
 
     playTrack(track) {
         this.options.seek = track.progress;
-        let trackStream = StringToStream(fs.readFileSync(track.path));
+        let trackStream = new TrackStream(fs.readFileSync(track.path));
         this.dispatcher = this.connection.playStream(trackStream, this.options);
         let tag = (this.options.seek === 0) ? 'player_play' : 'player_play_seek';
         this.guildConnection.startActions([new ChatAction([Dictionary[tag](track.name,
