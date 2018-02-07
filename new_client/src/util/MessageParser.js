@@ -5,6 +5,7 @@ const JoinChannelAction = require('../command/JoinChannelAction');
 const LeaveChannelAction = require('../command/LeaveChannelAction');
 const DownloadTrackAction = require('../command/DownloadTrackAction');
 const QueueNextAction = require('../command/QueueNextAction');
+const PraiseAction = require('../command/PraiseAction');
 
 const Dictionary = require('./Dictionary').Rus;
 const LinkChecker = require('./LinkChecker');
@@ -61,6 +62,10 @@ class MessageParser {
 
             'next': function () {
                 return [new QueueNextAction()];
+            },
+
+            'praise': function () {
+                return [new PraiseAction()];
             }
         }
     }

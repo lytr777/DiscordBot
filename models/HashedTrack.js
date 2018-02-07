@@ -13,6 +13,10 @@ let schema = new Schema({
         type: String,
         required: true
     },
+    searchName: {
+        type: String,
+        required: true
+    },
     duration: {
         type: Number,
         required: true
@@ -45,6 +49,7 @@ schema.statics.getTrackById = function (id, callback) {
                 track.markModified(['popularity']);
                 track.save(function (err) {
                     if (err) {
+                        console.log(err);
                         callback(err)
                     } else {
                         callback(null, track)
@@ -71,6 +76,7 @@ schema.statics.addTrack = function (trackInfo, callback) {
                 let track = new HashedTrack({
                     trackId: trackInfo.id,
                     name: trackInfo.name,
+                    searchName: trackInfo.name.toLowerCase(),
                     duration: trackInfo.duration,
                     path: trackInfo.path
                 });

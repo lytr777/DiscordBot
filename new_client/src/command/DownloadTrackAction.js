@@ -33,7 +33,8 @@ class DownloadTrackAction {
     }
 
     download(info, callback) {
-        HashedTrack.getTrackById(info.vid, function (err, track) {
+        let id = info.vid || info.video_id;
+        HashedTrack.getTrackById(id, function (err, track) {
             let id = info.vid || info.video_id;
             let trackInfo = {
                 id: id,
@@ -45,7 +46,7 @@ class DownloadTrackAction {
                 console.log("download vid: " + id);
                 callback([new ChatAction(Dictionary['start_download'](info.title))]);
                 let streamBuilder = function () {
-                    return ytdl.downloadFromInfo(info, {filter: 'audioonly'})
+                    return ytdl.downloadFromInfo(info, {quality: 'lowest', filter: 'audioonly'})
                 };
                 Downloader.download(trackInfo, streamBuilder, function (err, first, all) {
                     if (err) {
