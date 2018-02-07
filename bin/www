@@ -1,8 +1,17 @@
 #!/usr/bin/env node
-
+const exec = require('child_process').exec;
 const newClient = require('../client/index').DiscordClient;
 const config = require('../config');
 const mongoose = require('../lib/mongoose');
 
-let ncl = new newClient();
-ncl.login(config.get('token'));
+let discordConfig = config.get('discord');
+
+let child = exec('getconf ARG_MAX', function (err, stdout, stderr) {
+    if (err) {
+        console.log('exec error: ' + err.message);
+    } else {
+        discordConfig.argMax = stdout;
+        let ncl = new newClient(discordConfig);
+        ncl.login();
+    }
+});
