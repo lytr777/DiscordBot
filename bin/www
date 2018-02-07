@@ -10,7 +10,7 @@ let child = exec('getconf ARG_MAX', function (err, stdout, stderr) {
     if (err) {
         console.log('exec error: ' + err.message);
     } else {
-        discordConfig.argMax = stdout;
+        discordConfig.argMax = parseInt(stdout);
         let ncl = new newClient(discordConfig);
         ncl.login();
     }

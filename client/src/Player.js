@@ -2,7 +2,7 @@ const QueueElement = require('../../models/QueueElement').QueueElement;
 const ChatAction = require('./command/ChatAction');
 const Dictionary = require('./util/Dictionary').Rus;
 const Formatter = require('./util/Formatter');
-const Config = require('./util/Config').get();
+const Config = require('./util/Config');
 const StringToStream = require('string-to-stream');
 const fs = require("fs");
 
@@ -52,7 +52,6 @@ class Player {
 
     playTrack(track) {
         this.options.seek = track.progress;
-        // let trackStream = StringToStream('data:audio/webm;base64,' + fs.readFileSync(track.path, 'base64'));
         let trackStream = StringToStream(fs.readFileSync(track.path));
         this.dispatcher = this.connection.playStream(trackStream, this.options);
         let tag = (this.options.seek === 0) ? 'player_play' : 'player_play_seek';
@@ -64,7 +63,7 @@ class Player {
             let playedTime = Math.floor(this.dispatcher.time / 1000) + track.progress;
 
             this.dispatcher = null;
-            let timeCondition = (track.duration - playedTime > Config.timeEps);
+            let timeCondition = (track.duration - playedTime > Config.get().timeEps);
             if (reason === 'praise') {
                 this.databaseUpdate(track._id, playedTime, this.praise.bind(this));
                 return
@@ -103,7 +102,6 @@ class Player {
             }
         });
     }
-
 
     destroy() {
         if (this.dispatcher) {

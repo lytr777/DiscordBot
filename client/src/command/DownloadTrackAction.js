@@ -5,7 +5,7 @@ const Downloader = require('../util/Downloader');
 const ChatAction = require('./ChatAction');
 const AddTrackAction = require('./AddTrackAction');
 const Dictionary = require('../util/Dictionary').Rus;
-const Config = require('../util/Config').get();
+const Config = require('../util/Config');
 
 const collectionDirectory = '/var/cache/Bot/collection/';
 // const collectionDirectory = '/Users/lytr777/'
@@ -20,7 +20,7 @@ class DownloadTrackAction {
     start(guild, callback) {
         ytdl.getInfo(this.link)
             .then(function (info) {
-                if (info.length_seconds < Config.timeLimit) {
+                if (info.length_seconds < Config.get().timeLimit) {
                     this.download(info, callback)
                 } else {
                     callback([new ChatAction(Dictionary['too_long']())])

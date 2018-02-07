@@ -1,8 +1,5 @@
 class Config {
 
-    constructor() {
-    }
-
     set(options) {
         this.options = options
     }
