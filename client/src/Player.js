@@ -22,10 +22,8 @@ class Player {
             this.dispatcher.end(name);
             return
         }
-        if (!this.praiseString) {
-            this.praiseString = 'data:audio/webm;base64,' + fs.readFileSync('./files/' + name, 'base64');
-        }
-        this.dispatcher = this.connection.playArbitraryInput(this.praiseString, this.options);
+        let localFileString = 'data:audio/webm;base64,' + fs.readFileSync('./files/' + name, 'base64');
+        this.dispatcher = this.connection.playArbitraryInput(localFileString, this.options);
         this.dispatcher.on('end', function (reason) {
             console.log('Praise dispatcher end with reason : ' + reason);
             this.dispatcher = null;
