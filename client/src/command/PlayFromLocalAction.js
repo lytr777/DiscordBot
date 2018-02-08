@@ -7,7 +7,7 @@ class PraiseAction {
 
     start(connection) {
         if (connection && connection.player) {
-            connection.player.playFromLocal(name)
+            connection.player.playFromLocal(this.name)
         }
     }
 }
