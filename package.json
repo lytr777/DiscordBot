@@ -9,7 +9,7 @@
     "async": "2.6.0",
     "debug": "^2.6.9",
     "discord.js": "~11.3.0",
-    "ffmpeg-binaries": "^3.2.2",
+    "ffmpeg-binaries": "^3.2.2-3",
     "mongo": "~0.1.0",
     "mongodb": "~3.0.2",
     "mongoose": "~5.0.3",

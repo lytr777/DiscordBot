@@ -14,16 +14,16 @@ class Player {
         this.options = options;
         this.dispatcher = null;
         this.praiseString = null;
-        this.praise()
+        this.playFromLocal('praise')
     }
 
-    praise() {
+    playFromLocal(name) {
         if (this.dispatcher) {
-            this.dispatcher.end('praise');
+            this.dispatcher.end(name);
             return
         }
         if (!this.praiseString) {
-            this.praiseString = 'data:audio/webm;base64,' + fs.readFileSync('./files/praise', 'base64');
+            this.praiseString = 'data:audio/webm;base64,' + fs.readFileSync('./files/' + name, 'base64');
         }
         this.dispatcher = this.connection.playArbitraryInput(this.praiseString, this.options);
         this.dispatcher.on('end', function (reason) {
@@ -65,8 +65,8 @@ class Player {
 
             this.dispatcher = null;
             let timeCondition = (track.duration - playedTime > Config.get().timeEps);
-            if (reason === 'praise') {
-                this.databaseUpdate(track._id, playedTime, this.praise.bind(this));
+            if (reason === 'playFromLocal') {
+                this.databaseUpdate(track._id, playedTime, this.playFromLocal.bind(this));
                 return
             }
             if (reason === 'next' || reason === 'stream' || !timeCondition) {

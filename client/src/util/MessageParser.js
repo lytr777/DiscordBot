@@ -5,7 +5,7 @@ const JoinChannelAction = require('../command/JoinChannelAction');
 const LeaveChannelAction = require('../command/LeaveChannelAction');
 const DownloadTrackAction = require('../command/DownloadTrackAction');
 const QueueNextAction = require('../command/QueueNextAction');
-const PraiseAction = require('../command/PraiseAction');
+const PlayFromLocalAction = require('../command/PlayFromLocalAction');
 
 const Dictionary = require('./Dictionary').Rus;
 const LinkChecker = require('./LinkChecker');
@@ -65,7 +65,11 @@ class MessageParser {
             },
 
             'praise': function () {
-                return [new PraiseAction()];
+                return [new PlayFromLocalAction('praise')];
+            },
+
+            'sweety': function () {
+                return [new PlayFromLocalAction('sweety')];
             }
         }
     }
