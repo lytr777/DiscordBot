@@ -22,8 +22,8 @@ class Player {
             return
         }
         this.options.volume = 0.2;
-        let localFileString = 'data:audio/webm;base64,' + fs.readFileSync('./files/' + name, 'base64');
-        this.dispatcher = this.connection.playArbitraryInput(localFileString, this.options);
+        let trackStream = new TrackStream(fs.readFileSync('./files/' + name));
+        this.dispatcher = this.connection.playStream(trackStream, this.options);
         this.dispatcher.on('end', function (reason) {
             console.log('Local dispatcher end with reason : ' + reason);
             this.dispatcher = null;
