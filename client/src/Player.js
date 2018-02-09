@@ -13,7 +13,6 @@ class Player {
         this.connection = connection;
         this.options = options;
         this.dispatcher = null;
-        this.praiseString = null;
         this.playFromLocal('praise')
     }
 
@@ -22,10 +21,11 @@ class Player {
             this.dispatcher.end(name);
             return
         }
+        this.options.volume = 0.2;
         let localFileString = 'data:audio/webm;base64,' + fs.readFileSync('./files/' + name, 'base64');
         this.dispatcher = this.connection.playArbitraryInput(localFileString, this.options);
         this.dispatcher.on('end', function (reason) {
-            console.log('Praise dispatcher end with reason : ' + reason);
+            console.log('Local dispatcher end with reason : ' + reason);
             this.dispatcher = null;
             this.next(true)
         }.bind(this))
@@ -50,6 +50,7 @@ class Player {
     }
 
     playTrack(track) {
+        this.options.volume = 0.1;
         this.options.seek = track.progress;
         let trackStream = new TrackStream(fs.readFileSync(track.path));
         this.dispatcher = this.connection.playStream(trackStream, this.options);
