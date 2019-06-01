@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+const app = require('../app');
+const http = require('http');
+
 const exec = require('child_process').exec;
 const newClient = require('../client/index').DiscordClient;
 const config = require('../config');
@@ -10,6 +13,10 @@ let child = exec('getconf ARG_MAX', function (err, stdout, stderr) {
     if (err) {
         console.log('exec error: ' + err.message);
     } else {
+        app.set('port', config.get('port'));
+        var server = http.createServer(app);
+        server.listen(config.get('port'));
+
         discordConfig.argMax = parseInt(stdout);
         let ncl = new newClient(discordConfig);
         ncl.login();
